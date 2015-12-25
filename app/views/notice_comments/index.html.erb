@@ -1,14 +1,24 @@
-<ul>
-  <% @comments.each do |comment| %>
-  <li>
-    <%= comment.content %>
-    <%= link_to 'Edit', edit_notice_comment_path(@notice, comment) %>
-    <%= link_to 'Destroy', notice_comment_path(@notice, comment),
-    :method => :delete %>
-  </li>
-  <% end %>
-
-</ul>
+<p />
+<table>
+  <thead>
+    <tr>
+      <td>Comment</td>
+      <td>User</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+    <tr>
+      <td><%= comment.content %></td>
+      <td><%= comment.user.email %></td>
+      <% if comment.user == current_user %>
+      <td><%= link_to 'Edit', edit_notice_comment_path(@notice, comment) %></td>
+      <td><%= link_to 'Destroy', notice_comment_path(@notice, comment), :method => :delete %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <%= link_to 'New comment', new_notice_comment_path(@notice) %>
 <%= link_to 'All notices', notices_path %>

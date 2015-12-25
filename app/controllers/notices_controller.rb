@@ -1,4 +1,5 @@
 class NoticesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_notice, only: [:show, :edit, :update, :destroy]
 
   # GET /notices
@@ -24,7 +25,7 @@ class NoticesController < ApplicationController
   # POST /notices
   # POST /notices.json
   def create
-    @notice = Notice.new(notice_params)
+    @notice = current_user.notices.new(notice_params)
 
     respond_to do |format|
       if @notice.save
@@ -64,7 +65,7 @@ class NoticesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_notice
-      @notice = Notice.find(params[:id])
+      @notice = current_user.notices.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

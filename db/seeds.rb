@@ -8,3 +8,19 @@
 Category.create(:name => "快報資訊")
 Category.create(:name => "求物資")
 Category.create(:name => "求救")
+
+2.times do |i|
+  user = User.new
+  user.email = "user#{i+1}@email.com"
+  user.password = 'password'
+  user.save
+end
+
+notice1 = Notice.create(:title => "Notice1", :content => "Content1", :category_id => 1, :user_id => 1)
+notice2 = Notice.create(:title => "Notice2", :content => "Content2", :category_id => 2, :user_id => 2)
+
+notice1.comments.create(:content => "comment1", :user_id => 1)
+notice1.comments.create(:content => "comment2", :user_id => 2)
+
+notice2.comments.create(:content => "comment1", :user_id => 1)
+notice2.comments.create(:content => "comment2", :user_id => 2)

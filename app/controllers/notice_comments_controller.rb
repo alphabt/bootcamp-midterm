@@ -15,6 +15,7 @@ class NoticeCommentsController < ApplicationController
 
   def create
     @comment = @notice.comments.build( comment_params )
+    @comment.user_id = current_user.id
     if @comment.save
       redirect_to notice_comments_url( @notice )
     else
