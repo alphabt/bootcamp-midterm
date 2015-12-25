@@ -10,5 +10,10 @@
   <%= @notice.content %>
 </p>
 
+<p>
+  <strong>Category:</strong>
+  <%= @notice.category.name %>
+</p>
+
 <%= link_to 'Edit', edit_notice_path(@notice) %> |
 <%= link_to 'Back', notices_path %>
