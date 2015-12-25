@@ -1,0 +1,4 @@
+<%= form_for @comment, :url => notice_comments_path(@notice) do |f| %>
+<%= f.text_field :content %>
+<%= f.submit %>
+<% end %>
